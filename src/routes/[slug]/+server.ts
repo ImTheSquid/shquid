@@ -1,26 +1,20 @@
 import { error, redirect, type RequestEvent } from '@sveltejs/kit';
+import { Redis } from '@upstash/redis';
+
+const redis = Redis.fromEnv();
 
 interface Value {
 	target: string;
 	hits: number;
 }
 
-export async function GET({ url, platform }: RequestEvent) {
+export async function GET({ url }: RequestEvent) {
 	const stripped = url.pathname.substring(1);
-	console.log(stripped);
-	const kv = platform?.env.SHQUID_KV as KVNamespace;
-	console.log(await kv.get(stripped));
-	console.log(await kv.list());
 
-	// Handle special paths for Auth.js
-	if (stripped === 'auth' || stripped.startsWith('auth/callback')) {
-		throw new Error('This route should not be handled here.'); // Or redirect as needed
-	}
-
-	const value: Value | null = await kv.get(stripped, 'json');
+	const value = await redis.json.get<Value>(stripped);
 	if (value) {
 		value.hits += 1;
-		await kv.put(stripped, JSON.stringify(value));
+		await redis.set(stripped, value);
 		return redirect(302, value.target);
 	}
 
