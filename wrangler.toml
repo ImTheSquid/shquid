@@ -90,5 +90,3 @@ preview_id = "d6417703d70a414e9f470006c62849a4"
 # [[env.production.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "<PRODUCTION_NAMESPACE_ID>"
-[observability]
-enabled = true
