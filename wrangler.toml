@@ -43,6 +43,10 @@ pages_build_output_dir = ".svelte-kit/cloudflare"
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+[[kv_namespaces]]
+binding = "SHQUID_KV"
+id = "dd0c04b9bd0e4f9d96964336a7478120"
+preview_id = "d6417703d70a414e9f470006c62849a4"
 
 # Bind a Queue producer. Use this binding to schedule an arbitrary task that may be processed later by a Queue consumer.
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#queue-producers
