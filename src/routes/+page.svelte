@@ -44,6 +44,29 @@
 	<button onclick={() => signIn()}>SIGN IN</button>
 {/if}
 
+{#if links}
+	<table class="table-bordered table-auto border-collapse border border-gray-300">
+		<thead>
+			<tr>
+				<th class="border border-gray-300 px-4 py-2">Key</th>
+				<th class="border border-gray-300 px-4 py-2">Target</th>
+				<th class="border border-gray-300 px-4 py-2">Owner</th>
+				<th class="border border-gray-300 px-4 py-2">Privacy</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each links as item}
+				<tr>
+					<td class="border border-gray-300 px-4 py-2">{item.key}</td>
+					<td class="border border-gray-300 px-4 py-2">{item.target}</td>
+					<td class="border border-gray-300 px-4 py-2">{item.owner}</td>
+					<td class="border border-gray-300 px-4 py-2">{item.priv ? '🔒' : '🌐'}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+{/if}
+
 <style>
 	.arrow {
 		display: inline-block;

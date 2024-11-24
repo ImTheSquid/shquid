@@ -2,11 +2,9 @@ import type { Session } from '@auth/sveltekit';
 import type { IDSession } from '../types';
 import type { PageServerLoad } from './$types';
 import { getLinksCollection, type Link } from '$lib';
-import type { WithId } from 'mongodb';
 
 export const load: PageServerLoad = async (events) => {
 	const session = (await events.locals.auth()) as (IDSession | Session) | null;
-	console.log(session);
 
 	const coll = await getLinksCollection();
 
@@ -30,12 +28,13 @@ export const load: PageServerLoad = async (events) => {
 			session,
 			links: (await coll
 				.find(target ? { $or: [{ target }, { priv: false }] } : {})
-				.toArray()) as WithId<Link>[]
+				.project({ _id: 0 })
+				.toArray()) as Link[]
 		};
 	}
 
 	return {
 		session: null,
-		links: (await coll.find({ priv: false }).toArray()) as WithId<Link>[]
+		links: (await coll.find({ priv: false }).project({ _id: 0 }).toArray()) as Link[]
 	};
 };
