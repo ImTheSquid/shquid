@@ -51,6 +51,7 @@
 				<th class="border border-gray-300 px-4 py-2">Key</th>
 				<th class="border border-gray-300 px-4 py-2">Target</th>
 				<th class="border border-gray-300 px-4 py-2">Owner</th>
+				<th class="border border-gray-300 px-4 py-2">Hits</th>
 				<th class="border border-gray-300 px-4 py-2">Privacy</th>
 			</tr>
 		</thead>
@@ -60,6 +61,7 @@
 					<td class="border border-gray-300 px-4 py-2">{item.key}</td>
 					<td class="border border-gray-300 px-4 py-2">{item.target}</td>
 					<td class="border border-gray-300 px-4 py-2">{item.owner}</td>
+					<td class="border border-gray-300 px-4 py-2">{item.hits}</td>
 					<td class="border border-gray-300 px-4 py-2">{item.priv ? '🔒' : '🌐'}</td>
 				</tr>
 			{/each}
