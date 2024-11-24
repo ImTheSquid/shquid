@@ -1,13 +1,8 @@
+import type { Value } from '$lib';
 import { error, redirect, type RequestEvent } from '@sveltejs/kit';
 import { Redis } from '@upstash/redis';
 
 const redis = Redis.fromEnv();
-
-interface Value {
-	target: string;
-	hits: number;
-	owner: string;
-}
 
 export async function GET({ url }: RequestEvent) {
 	const stripped = url.pathname.substring(1);

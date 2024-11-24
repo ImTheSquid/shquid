@@ -6,7 +6,7 @@
 
 	let isSquished = false;
 
-	const squish = (_) => {
+	const squish = () => {
 		isSquished = true;
 		setTimeout(() => {
 			isSquished = false;
