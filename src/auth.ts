@@ -10,8 +10,7 @@ export const PurdueHackersIDProvider: OAuth2Config<IDProfile> = {
 	authorization: {
 		url: 'https://id.purduehackers.com/api/authorize',
 		params: {
-			scope: 'user:read',
-			response_mode: 'form_post'
+			scope: 'user:read'
 		}
 	},
 	checks: [],
