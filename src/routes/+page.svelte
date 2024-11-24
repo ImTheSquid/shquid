@@ -3,9 +3,7 @@
 
 	import { scale } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
-	import type { Session } from '@auth/sveltekit';
-	import type { IDSession } from '../types';
-	import type { Link } from '$lib';
+	import type { PageData } from './$types';
 
 	let isSquished = $state(false);
 
@@ -16,7 +14,8 @@
 		}, 500); // Controls how long the squid stays squished
 	};
 
-	const { session, links }: { session?: Session | IDSession; links?: Link[] } = $props();
+	const { data }: { data: PageData } = $props();
+	const { session, links } = data;
 </script>
 
 <button class="flex items-center justify-center text-center text-5xl" onclick={squish}>

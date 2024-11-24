@@ -28,7 +28,7 @@ export const PurdueHackersIDProvider: OAuth2Config<IDProfile> = {
 	clientSecret: '0'
 };
 
-export const { handle, signIn } = SvelteKitAuth({
+export const { handle, signIn, signOut } = SvelteKitAuth({
 	providers: [GitHub, PurdueHackersIDProvider],
 	trustHost: true,
 	callbacks: {
