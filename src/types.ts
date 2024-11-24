@@ -22,4 +22,4 @@ export interface IDProfile {
 
 export type IDSession = {
 	user: IDProfile;
-} | null;
+};

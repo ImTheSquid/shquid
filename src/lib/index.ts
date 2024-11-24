@@ -1,6 +1,25 @@
-// place files you want to import through the `$lib` alias in this folder.
-export interface Value {
+import { MongoClient } from 'mongodb';
+
+export interface Link {
+	key: string;
 	target: string;
 	hits: number;
-	owner: string | number;
+	owner: string;
+	priv: boolean;
 }
+
+const client = new MongoClient(process.env.MONGODB_URL ?? 'NULL');
+
+export async function getLinksCollection() {
+	await client.connect();
+	const db = client.db('shquid');
+	const links = db.collection('links');
+	return links;
+}
+
+export interface UpdateRequest {
+	target: string;
+	priv: boolean;
+}
+
+export const trustedPassportIds: number[] = [1];

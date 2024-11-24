@@ -19,7 +19,6 @@
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/eslint": "^9.6.0",
-		"@upstash/redis": "^1.34.3",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.7.0",
 		"eslint-config-prettier": "^9.1.0",
@@ -37,6 +36,7 @@
 		"wrangler": "^3.90.0"
 	},
 	"dependencies": {
-		"@auth/sveltekit": "^1.7.4"
+		"@auth/sveltekit": "^1.7.4",
+		"mongodb": "^6.11.0"
 	}
 }
