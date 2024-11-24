@@ -5,6 +5,9 @@ export const load: PageServerLoad = async (events) => {
 	console.log(session);
 
 	// Load all owned targets (or all targets if is main user)
+	if (session?.user?.email === process.env.GITHUB_EMAIL) {
+		//
+	}
 
 	return {
 		session
