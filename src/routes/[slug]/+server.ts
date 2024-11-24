@@ -6,6 +6,7 @@ const redis = Redis.fromEnv();
 interface Value {
 	target: string;
 	hits: number;
+	owner: string;
 }
 
 export async function GET({ url }: RequestEvent) {
@@ -14,7 +15,7 @@ export async function GET({ url }: RequestEvent) {
 	const value = await redis.json.get<Value>(stripped);
 	if (value) {
 		value.hits += 1;
-		await redis.set(stripped, value);
+		await redis.json.set(stripped, '$', JSON.stringify(value));
 		return redirect(302, value.target);
 	}
 
