@@ -75,9 +75,9 @@ function getOwner(
 		if (session.user.id === Number(process.env.PASSPORT_NUMBER) && insertNull) {
 			return null;
 		}
-		if (!trustedPassportIds.includes(Number(session.user.id))) {
-			throw Error('Untrusted passport!');
-		}
+		// if (!trustedPassportIds.includes(Number(session.user.id))) {
+		// 	throw Error('Untrusted passport!');
+		// }
 		return session.user.id?.toString() ?? 'NOID';
 	}
 }
