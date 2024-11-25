@@ -13,7 +13,7 @@ export const load: PageServerLoad = async (
 
 	// Load all owned targets (or all targets if is main user)
 	if (session?.user) {
-		// Try-catch in case of invalid passport
+		// Try-catch in case of invalid passport/email
 		try {
 			const target = getOwner(session);
 			const nonNullTarget = getOwner(session, false);
@@ -68,9 +68,12 @@ function getOwner(
 
 	if ('email' in session.user && 'login' in session.user) {
 		if (session.user.email === process.env.GITHUB_EMAIL && insertNull) {
-			return null;
+			if (insertNull) return null;
+
+			return session.user.login?.toString() ?? 'NOGHID';
+		} else {
+			throw Error('Invalid email!');
 		}
-		return session.user.login?.toString() ?? 'NOGHID';
 	} else {
 		if (session.user.id === Number(process.env.PASSPORT_NUMBER) && insertNull) {
 			return null;

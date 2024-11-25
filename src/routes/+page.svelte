@@ -63,6 +63,8 @@
 		<h2 class="text-3xl">SQUISH some links with IMSQU.ID</h2>
 
 		{#if ownerId}
+			<button onclick={() => signOut()} class="m-1 rounded bg-gray-300 p-1">SIGN OUT</button>
+		{:else}
 			{#if !links}
 				<h4 class="text-3xl text-red-500">
 					ERROR! INVALID LOGIN! Either you used GitHub login (only the owner can) or your passport
@@ -70,8 +72,6 @@
 				</h4>
 				<p>Sign out to see links, contact Jack to be added to the trusted list</p>
 			{/if}
-			<button onclick={() => signOut()} class="m-1 rounded bg-gray-300 p-1">SIGN OUT</button>
-		{:else}
 			<button onclick={() => signIn()} class="m-1 rounded bg-gray-300 p-1">SIGN IN</button>
 		{/if}
 
