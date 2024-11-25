@@ -17,4 +17,4 @@ export async function getLinksCollection() {
 	return links;
 }
 
-export const trustedPassportIds: number[] = [1];
+// export const trustedPassportIds: number[] = [1];
