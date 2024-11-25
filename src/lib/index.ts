@@ -17,9 +17,4 @@ export async function getLinksCollection() {
 	return links;
 }
 
-export interface UpdateRequest {
-	target: string;
-	priv: boolean;
-}
-
 export const trustedPassportIds: number[] = [1];
