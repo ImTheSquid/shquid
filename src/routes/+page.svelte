@@ -47,9 +47,12 @@
 	});
 </script>
 
-<div class="m-4 flex items-center justify-center">
-	<div class="flex flex-col items-center lg:w-1/2">
-		<button class="m-2 flex items-center justify-center text-center text-5xl" onclick={squish}>
+<div class="mx-auto w-full max-w-4xl px-4 py-4 sm:px-6">
+	<div class="flex flex-col items-center">
+		<button
+			class="m-2 flex items-center justify-center text-center text-3xl sm:text-5xl"
+			onclick={squish}
+		>
 			<span class="arrow {isSquished ? 'squish' : ''}">➡️</span>
 			<span
 				class="squid {isSquished ? 'squish' : ''}"
@@ -60,48 +63,75 @@
 			<span class="arrow {isSquished ? 'squishr' : ''}">⬅️</span>
 		</button>
 
-		<h2 class="text-3xl">SQUISH some links with IMSQU.ID</h2>
+		<h2 class="text-center text-xl sm:text-3xl">SQUISH some links with IMSQU.ID</h2>
 
 		{#if ownerId}
-			<button onclick={() => signOut()} class="m-1 rounded bg-gray-300 p-1">SIGN OUT</button>
+			<button
+				onclick={() => signOut()}
+				class="m-2 rounded bg-gray-300 px-4 py-2 text-base active:bg-gray-400">SIGN OUT</button
+			>
 		{:else}
 			{#if !links}
-				<h4 class="text-3xl text-red-500">
+				<h4 class="px-2 text-center text-lg text-red-500 sm:text-xl">
 					ERROR! INVALID LOGIN! Either you used GitHub login (only the owner can) or your passport
 					is not trusted.
 				</h4>
-				<p>Sign out to see links, contact Jack to be added to the trusted list</p>
+				<p class="px-2 text-center">
+					Sign out to see links, contact Jack to be added to the trusted list
+				</p>
 			{/if}
-			<button onclick={() => signIn()} class="m-1 rounded bg-gray-300 p-1">SIGN IN</button>
+			<button
+				onclick={() => signIn()}
+				class="m-2 rounded bg-gray-300 px-4 py-2 text-base active:bg-gray-400">SIGN IN</button
+			>
 		{/if}
 
 		{#if ownerId}
 			{#if links}
-				<h3 class="mt-3 text-2xl font-bold">My Links</h3>
+				<h3 class="mt-4 text-xl font-bold sm:text-2xl">My Links</h3>
 				<Table links={links.filter((l) => l.owner === ownerId)} editable={true} />
 			{/if}
 
-			<div class="mt-3 rounded border border-blue-300 p-1">
-				<form method="POST" action="?/create">
-					<h3 class="text-2xl font-bold">Create New Link</h3>
-					<label for="key">Key:</label>
-					<input class="border" id="key" name="key" bind:value={newKey} />
-					{#if free !== null}
-						<span>{free ? '✅' : '❌'}</span>
-					{/if}
-					<label for="target">Target:</label>
-					<input class="border" id="target" name="target" bind:value={newTarget} />
-					<label for="priv"> Private?: </label>
-					<input id="priv" name="priv" type="checkbox" />
+			<div class="mt-4 w-full rounded border border-blue-300 p-3 sm:p-4">
+				<form method="POST" action="?/create" class="flex flex-col gap-3">
+					<h3 class="text-center text-xl font-bold sm:text-2xl">Create New Link</h3>
+					<div class="flex flex-col gap-1">
+						<label for="key" class="font-medium">Key:</label>
+						<div class="flex items-center gap-2">
+							<input
+								class="flex-1 rounded border px-3 py-2 text-base"
+								id="key"
+								name="key"
+								bind:value={newKey}
+							/>
+							{#if free !== null}
+								<span class="text-xl">{free ? '✅' : '❌'}</span>
+							{/if}
+						</div>
+					</div>
+					<div class="flex flex-col gap-1">
+						<label for="target" class="font-medium">Target:</label>
+						<input
+							class="w-full rounded border px-3 py-2 text-base"
+							id="target"
+							name="target"
+							bind:value={newTarget}
+						/>
+					</div>
+					<div class="flex items-center gap-2">
+						<input id="priv" name="priv" type="checkbox" class="h-5 w-5" />
+						<label for="priv" class="font-medium">Private?</label>
+					</div>
 					<button
-						class="rounded bg-gray-300 p-1 disabled:bg-gray-100"
-						disabled={newTarget.length === 0 || newKey.length === 0 || !(free ?? false)}>Add</button
+						class="w-full rounded bg-gray-300 px-4 py-3 text-base font-medium active:bg-gray-400 disabled:bg-gray-100 disabled:text-gray-400"
+						disabled={newTarget.length === 0 || newKey.length === 0 || !(free ?? false)}
+						>Add Link</button
 					>
 				</form>
 			</div>
 		{/if}
 
-		<h3 class="mt-3 text-2xl font-bold">{isAdmin ? 'All' : 'Public'} Links</h3>
+		<h3 class="mt-4 text-xl font-bold sm:text-2xl">{isAdmin ? 'All' : 'Public'} Links</h3>
 		{#if links}
 			<Table links={links.filter((l) => l.owner !== ownerId)} editable={isAdmin} />
 		{/if}
