@@ -24,7 +24,7 @@ export const PurdueHackersIDProvider: OAuth2Config<IDProfile> = {
 	userinfo: {
 		url: 'https://id.purduehackers.com/api/user'
 	},
-	clientId: 'shquid',
+	clientId: '427b6046-2859-4b82-b3e1-ecb93a16cc6b',
 	clientSecret: '0'
 };
 
