@@ -9,6 +9,14 @@
 
 	let edit = $state(false);
 	let editItem = $state(item);
+	let copied = $state(false);
+
+	async function copyLink() {
+		const url = `${window.location.origin}/${item.key}`;
+		await navigator.clipboard.writeText(url);
+		copied = true;
+		setTimeout(() => (copied = false), 1500);
+	}
 </script>
 
 {#if mode === 'card'}
@@ -70,7 +78,16 @@
 				<div class="flex items-start justify-between gap-2">
 					<div class="min-w-0 flex-1">
 						<span class="text-xs font-semibold uppercase text-gray-500">Key</span>
-						<p class="break-all font-medium">{item.key}</p>
+						<div class="flex items-center gap-2">
+							<p class="break-all font-medium">{item.key}</p>
+							<button
+								onclick={copyLink}
+								class="rounded bg-gray-200 px-2 py-1 text-xs active:bg-gray-300"
+								title="Copy short link"
+							>
+								{copied ? '✓' : 'Copy'}
+							</button>
+						</div>
 					</div>
 					<span class="text-2xl">{item.priv ? '🔒' : '🌐'}</span>
 				</div>
@@ -115,7 +132,18 @@
 				<input class="w-full rounded border px-2 py-1" bind:value={editItem.target} />
 			</td>
 		{:else}
-			<td class="border border-gray-300 px-3 py-2 text-sm">{item.key}</td>
+			<td class="border border-gray-300 px-3 py-2 text-sm">
+				<div class="flex items-center gap-2">
+					<span>{item.key}</span>
+					<button
+						onclick={copyLink}
+						class="rounded bg-gray-200 px-1.5 py-0.5 text-xs active:bg-gray-300"
+						title="Copy short link"
+					>
+						{copied ? '✓' : 'Copy'}
+					</button>
+				</div>
+			</td>
 			<td class="max-w-xs truncate border border-gray-300 px-3 py-2 text-sm">{item.target}</td>
 		{/if}
 		<td class="border border-gray-300 px-3 py-2 text-sm">{item.owner}</td>

@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "pnpm run build && wrangler pages dev",
+		"preview": "bun run build && wrangler pages dev",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
@@ -36,6 +36,5 @@
 	"dependencies": {
 		"@auth/sveltekit": "^1.7.4",
 		"mongodb": "^6.11.0"
-	},
-	"packageManager": "pnpm@9.1.0+sha1.217063ce3fcbf44f3051666f38b810f1ddefee4a"
+	}
 }

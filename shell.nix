@@ -7,8 +7,6 @@ pkgs.mkShell {
     tailwindcss
     prettierd
     nixd
-    corepack_latest
-    nodejs_latest
-    eslint
+    bun
   ];
 }
